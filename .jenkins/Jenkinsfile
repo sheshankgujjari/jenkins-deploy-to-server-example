@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    stages {
+
+        stage('deploy') {
+            steps {
+                script {
+                    
+                    sshagent (credentials: ['jenkins-deploy']) {
+                         sh 'ssh -o StrictHostKeyChecking=no root@54.234.3.25 uptime'
+                         sh 'ssh root@54.234.3.25'
+                         sh 'scp /tmp/test.txt root@54.234.3.25:/tmp/'
+                        }
+                 }
+    }
+}
+    }
+}
